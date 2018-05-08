@@ -1,0 +1,8 @@
+[
+    { "user": "Jon Snow", "drink": "Kingfisher", "size": "small" },
+    { "user": "Arya Stark", "drink": "Heineken", "size": "small" },
+    { "user": "Tyrion Lannister", "drink": "Kalyani Black Label", "size": "large" },
+    { "user": "Khal Drogo", "drink": "Carlsberg", "size": "huge" },
+    { "user": "Joffrey Baratheon", "drink": "Foster", "size": "medium" },
+    { "user": "Tyrion Lannister", "drink": "Carlsberg", "size": "ultra" }
+]

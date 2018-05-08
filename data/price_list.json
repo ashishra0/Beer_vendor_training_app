@@ -1,0 +1,8 @@
+[
+    { "drink_name": "Kingfisher", "prices": { "small": 60 } },
+    { "drink_name": "Heineken", "prices": { "small": 55, "medium": 100, "large": 140 } },
+    { "drink_name": "Corona", "prices": { "small": 30, "medium": 60, "large": 100 } },
+    { "drink_name": "Foster", "prices": { "small": 40, "medium": 80 } },
+    { "drink_name": "Kalyani Black Label", "prices": { "small": 45, "medium": 90, "large": 130 } },
+    { "drink_name": "Carlsberg", "prices": { "large": 150, "huge": 200, "mega": 250, "ultra": 300 } }
+]
