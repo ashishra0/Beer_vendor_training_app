@@ -10,10 +10,10 @@ Vendor data
 
 ## Requirement
 
-- Calculate total cost of each user's orders
-- Calculate total payment for each user
-- Calculate what each user owes
-- Return a JSON string in required format
+- Calculate total cost of each user's orders.
+- Calculate total payment for each user.
+- Calculate what each user owes.
+- Return a JSON string in required format. 
 
 ## Running and testing
 
