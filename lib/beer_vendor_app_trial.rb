@@ -1,5 +1,4 @@
 require 'json'
-
 def beer_vendor
     prices_json = File.read('data/price_list.json')
     orders_json = File.read('data/orders.json')
@@ -19,7 +18,7 @@ def beer_vendor
     orders_json_hash.each do |order|
          drink_name = order['drink']
          drink_size = order['size']
-         price = price_list.dig(drink_name, drink_size)
+         price = price_list.store(drink_name, drink_size)
          beer_order_price.push(price)
     end
 
@@ -34,15 +33,29 @@ def beer_vendor
     payments_json_hash.each do |value|
        each_user = {:'user' => value['user']}
     end
-     puts each_user
+    # puts each_user
 
-    # each_user_amount = Hash.new 0
-    # payments_json_hash.each do |value|
-    #    each_user_amount = {:'order_total' => value['amount']}
-    # end
-    # puts   
-
+    each_user_amount = Hash.new 0
+    payments_json_hash.each do |value|
+       each_user_amount = {:'order_total' => value['amount']}
+    end
+    example = each_user.dup
+    each_user_amount.each do |k,v|
+        example[k] ||= 0
+        example[k] += v
+    end
     
+    # puts example
+
+    def user_price
+        Payment = Struct.new(:username, :amount) do
+            def user
+                User.where(name :username)
+            end
+        end
+    end
+    
+    puts payments_json_hash
 
 
     

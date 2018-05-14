@@ -8,6 +8,7 @@ class BeerVendorApp
       @prices_json_hash = JSON.parse(@prices_json)
       @orders_json_hash = JSON.parse(@orders_json)    
       @payments_json_hash = JSON.parse(@payments_json)
+      @each_user_price = {}
   end
 
   def self.call prices_json, orders_json, payments_json
@@ -25,12 +26,9 @@ class BeerVendorApp
       "order_total: #{val['amount']}"
     end
   end
-  
-  def total_bill
-    bill = each_user_amount.zip(order_total)
-  end
 
 end
 
 Bill = BeerVendorApp.new
-puts Bill.total_bill.to_json
+puts Bill.each_user_amount.to_json
+puts Bill.order_total
