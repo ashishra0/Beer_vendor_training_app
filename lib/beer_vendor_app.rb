@@ -31,17 +31,17 @@ class BeerVendorApp
 		
 		result = {}
 		user_orders.each do |elem|
-			price_list.each do |price|
-				# binding.pry
-				if elem.keys.first == price.values.first
-					if result.has_key?(price.keys.first)
-						result[price.keys.first] = result[price.keys.first] + price.values.first
+      price_list.each do |price|
+        if price.keys.first == elem.values.first
+          if result.has_key?(elem.keys.first)
+						result[elem.keys.first] = result[elem.keys.first] + price.values.first
 					else
-						result.merge!({price.keys.first => elem.values.first})
+            result.merge!({elem.keys.first => price.values.first})
 					end
-				end
+        end
 			end
-		end
+    end
+    binding.pry
 		puts result     
   end
 end
