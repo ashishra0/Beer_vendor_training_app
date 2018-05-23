@@ -7,11 +7,12 @@ task "run" do
   $LOAD_PATH.unshift(File.dirname(__FILE__), "lib")
   require 'beer_vendor_app'
 
-  price_list_json = File.read("data/price_list.json")
+  price_json = File.read("data/price_list.json")
   orders_json = File.read("data/orders.json")
   payments_json = File.read("data/payments.json")
 
-  result_json = BeerVendorApp.call(prices_json, orders_json, payments_json)
+
+  result_json = BeerVendorApp.call(price_json, orders_json, payments_json)
 
   user_balances = JSON.load(result_json)
 

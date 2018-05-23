@@ -1,34 +1,47 @@
 require 'json'
-
+require 'pry'
 class BeerVendorApp
-  def initialize
-      @prices_json = File.read('data/price_list.json')
-      @orders_json = File.read('data/orders.json')
-      @payments_json = File.read('data/payments.json')
-      @prices_json_hash = JSON.parse(@prices_json)
-      @orders_json_hash = JSON.parse(@orders_json)    
-      @payments_json_hash = JSON.parse(@payments_json)
-      @each_user_price = {}
-  end
 
-  def self.call prices_json, orders_json, payments_json
-    
-  end
+  def self.call price_list_json, orders_json, payments_json
 
-  def each_user_amount
-    @payments_json_hash.group_by {|val| val['user']}.map do |user,array|[user, array.map{|price| price['amount']}.inject(:+)]
+    orders_list = JSON.parse(orders_json)
+    payments_list = JSON.parse(payments_json)
+    prices_list = JSON.parse(price_list_json)
+    # binding.pry
+    user_orders = []
+    orders_list.each do |order|
+      # binding.pry
+        users = order["user"]
+        item = order["drink"] + " " + order["size"]
+        user_orders  << {users => item}
     end
-    .to_h
-  end
+      puts user_orders
 
-  def order_total
-    @payments_json_hash.map do |val|
-      "order_total: #{val['amount']}"
+    price_list = []
+    prices_list.each do |price|
+        drink_name = price["drink_name"]
+        price["prices"].keys.each do |size|
+            drink_name += " " + size 
+            amount = price["prices"][size]
+            price_list << { drink_name => amount}
+            drink_name = price["drink_name"]
+        end
     end
+    puts price_list
+		
+		result = {}
+		user_orders.each do |elem|
+			price_list.each do |price|
+				# binding.pry
+				if elem.keys.first == price.values.first
+					if result.has_key?(price.keys.first)
+						result[price.keys.first] = result[price.keys.first] + price.values.first
+					else
+						result.merge!({price.keys.first => elem.values.first})
+					end
+				end
+			end
+		end
+		puts result     
   end
-
 end
-
-Bill = BeerVendorApp.new
-puts Bill.each_user_amount.to_json
-puts Bill.order_total
