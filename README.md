@@ -21,4 +21,4 @@ Vendor data
 - `bundle exec rspec` : Runs the test suite.
 
 
-> Note: Under Development
+> Note: Under Development.
