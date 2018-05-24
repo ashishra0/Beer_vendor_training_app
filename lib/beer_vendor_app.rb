@@ -44,7 +44,7 @@ class BeerVendorApp
         end
 			end
     end
-    puts result
+    puts result.to_json
        
   # total payment by each user.
     payment_list = {}
@@ -56,7 +56,7 @@ class BeerVendorApp
         payment_list.merge!({amt.values.first => amt.values.last})
       end
     end
-    puts payment_list
+    puts payment_list.to_json
 
     # What each user owes
     owes_list = {}
@@ -67,6 +67,6 @@ class BeerVendorApp
       end
     end
     # binding.pry
-    puts owes_list
+    puts owes_list.to_json
   end
 end
