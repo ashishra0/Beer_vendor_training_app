@@ -62,19 +62,19 @@ describe "integration" do
     end
 
     it "has all users who have ordered beer" do
-      pass
+      puts 'Pending implementation....'
     end
 
     it "has order totals for each user" do
-      pass
+      puts 'Pending implementation....'
     end
 
     it "has payment totals for each user" do
-      pass
+      puts 'Pending implementation....'
     end
 
     it "has current balance for each user" do
-      pass
+      puts 'Pending implementation....'
     end
   end
 
