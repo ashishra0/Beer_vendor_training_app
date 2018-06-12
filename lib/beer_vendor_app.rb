@@ -1,5 +1,5 @@
 require 'json'
-require 'pry'
+require 'pry-nav'
 
 class UserRepository
   class DuplicateUserError < StandardError; end
@@ -78,7 +78,9 @@ class OrderRepository
   end
 
   def self.find(username:, drinkname:, size:)
-    @order_repo.detect { |user| order.username == username }
+    # binding.pry
+    @order_repo.detect { |order| order.name == username }
+    # binding.pry
   end
 
   def self.all
@@ -114,7 +116,7 @@ class BeerVendorApp
     price_list = JSON.parse(price_list_json)
     order_list = JSON.parse(orders_json)
     payment_list = JSON.parse(payments_json)
-    
+
     drinks = price_list.map do |price_detail|
       drink = Drink.new(name: price_detail['drink_name'])
       price_detail['prices'].each do |category, value|
@@ -127,7 +129,7 @@ class BeerVendorApp
       user = UserRepository.find_or_create(order_detail['user'])
       drink = Drink.new(name: order_detail['drink'])
       size = order_detail['size']
-      OrderRepository.add(username: order_details['user'], drinkname: order_detail['drink'], size: order_detail['size'])
+      OrderRepository.add(username: order_detail['user'], drinkname: order_detail['drink'], size: order_detail['size'])
     end
 
     payments = payment_list.map do |payment_detail|
